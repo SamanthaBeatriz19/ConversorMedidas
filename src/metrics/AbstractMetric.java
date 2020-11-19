@@ -7,8 +7,7 @@ public class AbstractMetric {
 		AREA("area","square meters(m^2)"),
 		VOLUME("volume","liters(L)"),
 		TIME("time","seconds(s)"),
-		SPEED("speed","m/s"),
-		MASS("mass","kilograms(Kg)");
+		SPEED("speed","m/s");
 		
 	
 	//this is an example that should be followed for any other metric in the package
