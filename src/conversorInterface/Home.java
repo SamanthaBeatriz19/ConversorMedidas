@@ -1,5 +1,6 @@
 package conversorInterface;
 
+
 @SuppressWarnings("serial")
 public class Home extends javax.swing.JFrame{
 
@@ -104,15 +105,21 @@ public class Home extends javax.swing.JFrame{
 
         txtValue.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
         
-        
 
-        boxMetrics1.addItem("item 1");
-        boxMetrics1.addItem("item 2");
-        
-        boxMetrics2.addItem("item 1");
-        boxMetrics2.addItem("item 2");
-        
-        
+        boxMetrics1.addItem("centimeter");
+        boxMetrics1.addItem("meter");
+        boxMetrics1.addItem("Square centimeter");
+        boxMetrics1.addItem("Square meter");
+        boxMetrics1.addItem("Cubic centimeter");
+        boxMetrics1.addItem("Cubic meter");
+           
+        boxMetrics2.addItem("centimeter");
+        boxMetrics2.addItem("meter");
+        boxMetrics2.addItem("Square centimeter");
+        boxMetrics2.addItem("Square meter");
+        boxMetrics2.addItem("Cubic centimeter");
+        boxMetrics2.addItem("Cubic meter");
+           
 
         javax.swing.GroupLayout windowJavaLayout = new javax.swing.GroupLayout(windowJava.getContentPane());
         windowJava.getContentPane().setLayout(windowJavaLayout);
@@ -186,11 +193,13 @@ public class Home extends javax.swing.JFrame{
     }
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+
+    	new Help ().setVisible(true);
+    	
     }
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    	
     }
 
    
@@ -221,6 +230,8 @@ public class Home extends javax.swing.JFrame{
             }
         });
     }
+    
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToolBar toolBar;

@@ -1,5 +1,7 @@
 package conversorInterface;
 
+import conversor.FileReader;
+
 @SuppressWarnings("serial")
 public class Help extends javax.swing.JFrame{
 
@@ -29,7 +31,7 @@ public class Help extends javax.swing.JFrame{
         jTextPane1.setEditable(false);
         jTextPane1.setBorder(null);
         jTextPane1.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
-        jTextPane1.setText("'Projeto II' - Group A - 4 \n\nGuilherme - Samantha - Alexandre - Juan ");
+        jTextPane1.setText(FileReader.getHelpText());
         jTextPane1.setOpaque(false);
         panelText.setViewportView(jTextPane1);
 

@@ -1,5 +1,6 @@
 package conversor;
-import conversorInterface.*;
+
+import conversorInterface.Home;
 
 public class ConversorMain {
 
@@ -10,7 +11,7 @@ public class ConversorMain {
 		Home open = new Home();
 		open.setVisible(true);
 		
-
+		
 	}
 
 }
