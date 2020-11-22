@@ -5,16 +5,12 @@
  */
 package conversorInterface;
 
-<<<<<<< Updated upstream
-import java.awt.event.ItemEvent;
-=======
 import conversor.FindClasses;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
->>>>>>> Stashed changes
 import metrics.Centimeters;
 
 /**
@@ -53,6 +49,7 @@ public class Home extends javax.swing.JFrame {
         boxMetrics1 = new javax.swing.JComboBox<>();
         boxMetrics2 = new javax.swing.JComboBox<>();
         btnConvert = new javax.swing.JButton();
+        btnConvert1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,6 +127,18 @@ public class Home extends javax.swing.JFrame {
         boxMetrics1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
 
         btnConvert.setText("Convert");
+        btnConvert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertActionPerformed(evt);
+            }
+        });
+
+        btnConvert1.setText("Refresh Classes");
+        btnConvert1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvert1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,24 +149,22 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelConvert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
+                        .addComponent(txtValue)
+                        .addGap(18, 18, 18)
+                        .addComponent(boxMetrics1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtValue)
-                                .addGap(18, 18, 18)
-                                .addComponent(boxMetrics1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(boxMetrics2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(20, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConvert)
-                        .addGap(94, 94, 94))))
+                                .addComponent(btnConvert)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnConvert1))
+                            .addComponent(boxMetrics2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -183,7 +190,9 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(panelTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnConvert)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnConvert)
+                            .addComponent(btnConvert1))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(boxMetrics2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,6 +209,89 @@ public class Home extends javax.swing.JFrame {
      dispose();
      
     }//GEN-LAST:event_btnHelpActionPerformed
+
+    private void btnConvert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvert1ActionPerformed
+        // TODO add your handling code here:
+
+        //boxMetrics2.removeAllItems();
+
+      //  System.out.println("Você escolheu a opção " + e.getItem());
+
+        String selectedItem = (String) boxMetrics1.getSelectedItem();
+
+        int index = selectedItem.indexOf("[") ;
+        int lengthString = selectedItem.length() ;
+
+        if(index > -1 ){
+
+            List<?> listClasse = new ArrayList();
+
+            listClasse = FindClasses.ClassNames();
+
+            boxMetrics1.removeAllItems();
+
+            for(int a=0;a<listClasse.size();a++) {
+
+                String classe = (String) listClasse.get(a);
+
+                int indexClasse = classe.indexOf("AbstractMetric");
+
+               // System.out.println("-  "+listClasse.get(a));
+
+                if(indexClasse == -1 ){
+                   // System.out.println(" IF -  "+listClasse.get(a));
+                   String[] parts = classe.split("/");
+                   String part1 = parts[0];
+                   String[] parts2 = parts[1].split("\\.");
+                   String part2 = parts2[0]; 
+
+                    try {
+
+                        Class c = Class.forName(part1 + "." +part2);
+                        Object obj = c.newInstance();
+
+                        boxMetrics1.addItem(obj.toString());
+
+                       // System.out.println("tipo " + obj.toString());
+
+                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+
+                }
+
+            }
+          //  System.out.println("olocoo");
+
+            String typeClass = selectedItem.substring(index,lengthString);
+           // System.out.println(typeClass);
+
+            int lengthCombo1 = boxMetrics1.getItemCount();
+            boxMetrics2.removeAllItems();    
+            for (int i = 0; i < lengthCombo1; i++) {
+
+                String itemCombo1 = boxMetrics1.getItemAt(i);
+                int indexCombo2 = itemCombo1.indexOf(typeClass);
+               // System.out.println("componente " + boxMetrics1.getItemAt(i)); 
+                //System.out.println("indexCombo2 " + indexCombo2); 
+
+                if(indexCombo2 > -1 ){
+                   // System.out.println("alouu ");
+                    boxMetrics2.addItem(itemCombo1);
+                }
+
+            }
+            
+            boxMetrics1.setSelectedItem(selectedItem);
+
+            //System.out.println("qntd " + lengthCombo1);
+        }
+
+    }//GEN-LAST:event_btnConvert1ActionPerformed
+
+    private void btnConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConvertActionPerformed
     
     private void myInit() {
         
@@ -207,11 +299,7 @@ public class Home extends javax.swing.JFrame {
         setLocationRelativeTo(null);
                
         Centimeters centimetro = new Centimeters();
-<<<<<<< Updated upstream
-                
-=======
     
->>>>>>> Stashed changes
         String type = centimetro.getType();
         String name = centimetro.getName();
         String unit = centimetro.getUnit();
@@ -222,65 +310,6 @@ public class Home extends javax.swing.JFrame {
         
         txtValue.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
         // String type = AbstractMetric.measureTypes.getType();
-<<<<<<< Updated upstream
-            
- 
-        boxMetrics1.addItem(name + " [" + type + "]");
-        boxMetrics1.addItem("meter(M) [distance]");
-        boxMetrics1.addItem("Square centimeter [area]");
-        boxMetrics1.addItem("Square meter [area]");
-        boxMetrics1.addItem("Cubic centimeter [volume]");
-        boxMetrics1.addItem("Cubic meter [volume]");
-        
-        String firstItem = (String) boxMetrics1.getSelectedItem();
-        
-        int firstIndex = firstItem.indexOf("[") ;
-        int firstLenght = firstItem.length() ;
-
-        if(firstIndex > -1 ){
-            String typeClass = firstItem.substring(firstIndex,firstLenght);
-            System.out.println(typeClass);
-
-            int lengthCombo = boxMetrics1.getItemCount();
-
-            for (int i = 0; i < lengthCombo; i++) {
-
-                String itemCombo = boxMetrics1.getItemAt(i);
-                int indexOfCombo2 = itemCombo.indexOf(typeClass);
-               // System.out.println("componente " + boxMetrics1.getItemAt(i)); 
-                //System.out.println("indexCombo2 " + indexOfCombo2); 
-
-                if(indexOfCombo2 > -1 ){
-               //     System.out.println("alouu ");
-                    boxMetrics2.addItem(itemCombo);
-                }
- 
-            }
-
-         //   System.out.println("qntd " + lengthCombo);
-        }
-
-        
-        
-        
-        
-        boxMetrics1.addItemListener((ItemEvent e) -> {
-           
-            if(e.getStateChange() == ItemEvent.SELECTED){// para evitar duplicações
-                boxMetrics2.removeAllItems();
-
-              //  System.out.println("Você escolheu a opção " + e.getItem());
-
-                String selectedItem = (String) e.getItem();
-
-                int index = selectedItem.indexOf("[") ;
-                int lengthString = selectedItem.length() ;
-
-                if(index > -1 ){
-                    String typeClass = selectedItem.substring(index,lengthString);
-                   // System.out.println(typeClass);
-
-=======
         
         List<?> listClasses = new ArrayList();
 
@@ -361,6 +390,7 @@ public class Home extends javax.swing.JFrame {
         boxMetrics1.addItemListener((ItemEvent e) -> {
            
             if(e.getStateChange() == ItemEvent.SELECTED){// para evitar duplicações
+                
                 boxMetrics2.removeAllItems();
 
               //  System.out.println("Você escolheu a opção " + e.getItem());
@@ -369,13 +399,14 @@ public class Home extends javax.swing.JFrame {
 
                 int index = selectedItem.indexOf("[") ;
                 int lengthString = selectedItem.length() ;
-
+                
                 if(index > -1 ){
-                    //boxMetrics1.removeAllItems();
+                    
                     List<?> listClasse = new ArrayList();
 
                     listClasse = FindClasses.ClassNames();
                     
+                    //boxMetrics1.removeAllItems();
                   //  System.out.println("testee");
                     
                    // System.out.println("mano que isso " + listClasse.size());
@@ -416,7 +447,6 @@ public class Home extends javax.swing.JFrame {
                     String typeClass = selectedItem.substring(index,lengthString);
                    // System.out.println(typeClass);
 
->>>>>>> Stashed changes
                     int lengthCombo1 = boxMetrics1.getItemCount();
 
                     for (int i = 0; i < lengthCombo1; i++) {
@@ -493,6 +523,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxMetrics1;
     private javax.swing.JComboBox<String> boxMetrics2;
     private javax.swing.JButton btnConvert;
+    private javax.swing.JButton btnConvert1;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnHome;
     private javax.swing.JLabel jLabel1;

@@ -14,20 +14,18 @@ public class ConversorMain {
 		
 		Home open = new Home();
 		open.setVisible(true);
-		
+		/*
 		List<?> listClasses = new ArrayList();
 		
                 FindClasses teste = new FindClasses();
                 
 		listClasses = FindClasses.ClassNames();
 		
-                FindClasses.ClassNames();
-                FindClasses.ClassNames();
-                FindClasses.ClassNames();
+ 
 		for(int a=0;a<listClasses.size();a++) {
-			//System.out.println("-  "+listClasses.get(a));
+			System.out.println("-  "+listClasses.get(a));
 		}
-		
+		*/
 	}
 
 }
