@@ -2,7 +2,7 @@ package metrics;
 
 import java.lang.Math;
 
-public class Centimeters extends AbstractMetric {
+public class Centimeters extends AbstractMetric implements IMetrics {
 	
 	measureTypes metric = measureTypes.DISTANCE;
 	
@@ -18,15 +18,13 @@ public class Centimeters extends AbstractMetric {
         this.name = "Centimeters(CM)";
     }
 
-<<<<<<< Updated upstream
-=======
+
     @Override
     public String toString() {
         return name + " " + "[" + type + "]";
     }
     
 
->>>>>>> Stashed changes
     public String getName() {
         return name;
     }
@@ -71,4 +69,19 @@ public class Centimeters extends AbstractMetric {
 		value = value*Math.pow(10,7);
 		return value;
 	}
+
+    @Override
+    public double toBasicUnit(double value) {
+        return value/100; //DE CENTIMETRO PARA METRO
+    }
+
+    @Override
+    public double fromBasicUnit(double value) {
+        return value*100; //DE METRO PARA CENTIMENTO
+    }
+
+    @Override
+    public double Convert(double from, IMetrics metrics) {
+        return fromBasicUnit(metrics.toBasicUnit(from));
+    }
 }

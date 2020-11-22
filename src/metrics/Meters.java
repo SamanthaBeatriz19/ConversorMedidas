@@ -1,8 +1,10 @@
 package metrics;
 
+import javax.swing.JComboBox;
 
 
-public class Meters extends AbstractMetric{
+
+public class Meters extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.DISTANCE;
 	
@@ -34,4 +36,19 @@ public class Meters extends AbstractMetric{
 	public float ToMilimeter(float value) {
 		return value*1000;
 	}
+
+    @Override
+    public double toBasicUnit(double value) {
+        return value; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double fromBasicUnit(double value) {
+        return value; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double Convert(double from, IMetrics metrics) {
+         return fromBasicUnit(metrics.toBasicUnit(from));//To change body of generated methods, choose Tools | Templates.
+    }
 }

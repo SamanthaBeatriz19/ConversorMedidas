@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metrics.Centimeters;
+import metrics.IMetrics;
+import metrics.Meters;
 
 /**
  *
@@ -291,6 +293,20 @@ public class Home extends javax.swing.JFrame {
 
     private void btnConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertActionPerformed
         // TODO add your handling code here:
+        IMetrics centimeters = new Centimeters();
+        IMetrics meters = new Meters();
+        
+        double teste = centimeters.Convert(1, meters);
+        double teste2 = meters.Convert(100, centimeters);
+
+        System.out.println(teste);
+        System.out.println(teste2);
+
+        
+        
+        //Converter converter = new Converter();
+            //String ret = converter.MeasureConverter(txtValue.getText(),boxMetrics1,boxMetrics2);
+            //jTextField1.setText("100");
     }//GEN-LAST:event_btnConvertActionPerformed
     
     private void myInit() {
