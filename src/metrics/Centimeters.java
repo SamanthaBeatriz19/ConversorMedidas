@@ -18,6 +18,15 @@ public class Centimeters extends AbstractMetric {
         this.name = "Centimeters(CM)";
     }
 
+<<<<<<< Updated upstream
+=======
+    @Override
+    public String toString() {
+        return name + " " + "[" + type + "]";
+    }
+    
+
+>>>>>>> Stashed changes
     public String getName() {
         return name;
     }

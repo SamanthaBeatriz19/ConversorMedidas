@@ -7,9 +7,21 @@ public class Meters extends AbstractMetric{
 	measureTypes metric = measureTypes.DISTANCE;
 	
 	@SuppressWarnings("unused")
-	private String type = metric.getType() ;
+	private String type ;
 	@SuppressWarnings("unused")
-	private String unit = metric.getUnit();
+	private String unit;
+        private String name;
+
+        public Meters() {
+            this.type = metric.getType();
+            this.unit = metric.getUnit();
+            this.name = "Meters(CM)";
+        }
+
+        @Override
+        public String toString() {
+            return name + " " + "[" + type + "]";
+        }
 	
 	public float ToCentimeter(float value) {
 		return value*100;

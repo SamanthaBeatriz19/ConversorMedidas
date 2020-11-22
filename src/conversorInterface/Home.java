@@ -5,7 +5,16 @@
  */
 package conversorInterface;
 
+<<<<<<< Updated upstream
 import java.awt.event.ItemEvent;
+=======
+import conversor.FindClasses;
+import java.awt.event.ItemEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+>>>>>>> Stashed changes
 import metrics.Centimeters;
 
 /**
@@ -198,7 +207,11 @@ public class Home extends javax.swing.JFrame {
         setLocationRelativeTo(null);
                
         Centimeters centimetro = new Centimeters();
+<<<<<<< Updated upstream
                 
+=======
+    
+>>>>>>> Stashed changes
         String type = centimetro.getType();
         String name = centimetro.getName();
         String unit = centimetro.getUnit();
@@ -209,6 +222,7 @@ public class Home extends javax.swing.JFrame {
         
         txtValue.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
         // String type = AbstractMetric.measureTypes.getType();
+<<<<<<< Updated upstream
             
  
         boxMetrics1.addItem(name + " [" + type + "]");
@@ -266,6 +280,143 @@ public class Home extends javax.swing.JFrame {
                     String typeClass = selectedItem.substring(index,lengthString);
                    // System.out.println(typeClass);
 
+=======
+        
+        List<?> listClasses = new ArrayList();
+
+        listClasses = FindClasses.ClassNames();
+
+        for(int a=0;a<listClasses.size();a++) {
+
+            String classe = (String) listClasses.get(a);
+
+            int indexClasse = classe.indexOf("AbstractMetric");
+
+            if(indexClasse == -1 ){
+
+               String[] parts = classe.split("/");
+               String part1 = parts[0];
+               String[] parts2 = parts[1].split("\\.");
+               String part2 = parts2[0]; 
+
+                try {
+
+                    Class c = Class.forName(part1 + "." +part2);
+                    Object obj = c.newInstance();
+                    
+                    boxMetrics1.addItem(obj.toString());
+
+                   // System.out.println("tipo " + obj.toString());
+
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+
+            }
+
+        }
+ /*
+        boxMetrics1.addItem(name + " [" + type + "]");
+        boxMetrics1.addItem("meter(M) [distance]");
+        boxMetrics1.addItem("Square centimeter [area]");
+        boxMetrics1.addItem("Square meter [area]");
+        boxMetrics1.addItem("Cubic centimeter [volume]");
+        boxMetrics1.addItem("Cubic meter [volume]");
+   */
+        String firstItem = (String) boxMetrics1.getSelectedItem();
+        
+        int firstIndex = firstItem.indexOf("[");
+        int firstLenght = firstItem.length();
+        
+    
+        if(firstIndex > -1 ){
+            
+            
+            String typeClass = firstItem.substring(firstIndex,firstLenght);
+            System.out.println(typeClass);
+
+            int lengthCombo = boxMetrics1.getItemCount();
+
+            for (int i = 0; i < lengthCombo; i++) {
+
+                String itemCombo = boxMetrics1.getItemAt(i);
+                int indexOfCombo2 = itemCombo.indexOf(typeClass);
+               // System.out.println("componente " + boxMetrics1.getItemAt(i)); 
+                //System.out.println("indexCombo2 " + indexOfCombo2); 
+
+                if(indexOfCombo2 > -1 ){
+               //     System.out.println("alouu ");
+                    boxMetrics2.addItem(itemCombo);
+                }
+ 
+            }
+
+         //   System.out.println("qntd " + lengthCombo);
+        }
+
+        boxMetrics1.addItemListener((ItemEvent e) -> {
+           
+            if(e.getStateChange() == ItemEvent.SELECTED){// para evitar duplicações
+                boxMetrics2.removeAllItems();
+
+              //  System.out.println("Você escolheu a opção " + e.getItem());
+
+                String selectedItem = (String) e.getItem();
+
+                int index = selectedItem.indexOf("[") ;
+                int lengthString = selectedItem.length() ;
+
+                if(index > -1 ){
+                    //boxMetrics1.removeAllItems();
+                    List<?> listClasse = new ArrayList();
+
+                    listClasse = FindClasses.ClassNames();
+                    
+                  //  System.out.println("testee");
+                    
+                   // System.out.println("mano que isso " + listClasse.size());
+
+                    for(int a=0;a<listClasse.size();a++) {
+
+                        String classe = (String) listClasse.get(a);
+
+                        int indexClasse = classe.indexOf("AbstractMetric");
+                        
+                       // System.out.println("-  "+listClasse.get(a));
+
+                        if(indexClasse == -1 ){
+                           // System.out.println(" IF -  "+listClasse.get(a));
+                           String[] parts = classe.split("/");
+                           String part1 = parts[0];
+                           String[] parts2 = parts[1].split("\\.");
+                           String part2 = parts2[0]; 
+
+                            try {
+
+                                Class c = Class.forName(part1 + "." +part2);
+                                Object obj = c.newInstance();
+                                
+                               // boxMetrics1.addItem(obj.toString());
+                                
+                               // System.out.println("tipo " + obj.toString());
+
+                            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                            } 
+
+                        }
+
+                    }
+                  //  System.out.println("olocoo");
+                    
+                    String typeClass = selectedItem.substring(index,lengthString);
+                   // System.out.println(typeClass);
+
+>>>>>>> Stashed changes
                     int lengthCombo1 = boxMetrics1.getItemCount();
 
                     for (int i = 0; i < lengthCombo1; i++) {
