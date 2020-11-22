@@ -57,16 +57,16 @@ public class FindClasses {
 			for (File file : files) {
 				builder = new StringBuilder(100);
 				builder.append(parent).append("/").append(file.getName());
-				String packageOrClass = (parent == null ? file.getName() : builder
+				String Address = (parent == null ? file.getName() : builder
 						.toString());
 
 				if (file.isDirectory()) {
-					getClassesInDirectory(packageOrClass, file, packagePatterns);
+					getClassesInDirectory(Address, file, packagePatterns);
 				} else if (file.getName().endsWith(".class")) {
-					if (matchesAny(packageOrClass, packagePatterns)) {
-						if(packageOrClass.contains("metrics")) {
+					if (matchesAny(Address, packagePatterns)) {
+						if(Address.contains("metrics")) {
 							//System.out.println(packageOrClass);
-							result.add(packageOrClass);
+							result.add(Address);
 							
 						}
 					}
@@ -89,26 +89,13 @@ public class FindClasses {
 			return false;
 		}
 
-	public static ArrayList<String> getClassesAdress() {
-		scan(Thread.currentThread().getContextClassLoader(),
-					Collections.emptySet(), Collections.emptySet());
-			
-			return result;
-	}
 	
 	public static ArrayList<String> ClassNames(){
+		result.clear();
+		
 		scan(Thread.currentThread().getContextClassLoader(),
 				Collections.emptySet(), Collections.emptySet());
-	
-		
-		for(int a=0;a<result.size();a++) {
-			String aux = (String) result.get(a);
-			aux.replace("metrics/", " ");
-			aux.replace(".class"," ");
-			result.set(a, aux);
-		}
 		
 		return result;
-	}
-	
+	}	
 }
