@@ -219,7 +219,7 @@ public class Home extends javax.swing.JFrame {
 
         String selectedItem = (String) boxMetrics1.getSelectedItem();
 
-        int index = selectedItem.indexOf("[") ;
+        int index = selectedItem.indexOf("[");
         int lengthString = selectedItem.length() ;
 
         if(index > -1 ){
@@ -263,26 +263,51 @@ public class Home extends javax.swing.JFrame {
             }
           //  System.out.println("olocoo");
 
-            String typeClass = selectedItem.substring(index,lengthString);
+            
            // System.out.println(typeClass);
-
+            boxMetrics1.setSelectedItem(selectedItem);
+            
+            System.out.println("Selected item " + selectedItem);
+            
             int lengthCombo1 = boxMetrics1.getItemCount();
             boxMetrics2.removeAllItems();    
+            
+            boolean existsSelectedItem = false;
+            
+            for (int i = 0; i < lengthCombo1; i++) {
+                String itemOfCombo = boxMetrics1.getItemAt(i);
+                int indexCombo1 = itemOfCombo.indexOf(selectedItem);
+                if(indexCombo1 > -1){
+                    existsSelectedItem = true;
+                }
+            }
+            
+            if(!existsSelectedItem){
+                selectedItem = (String) boxMetrics1.getItemAt(0);
+                index = selectedItem.indexOf("[");
+                lengthString = selectedItem.length();
+            }
+            
+            String typeClass = selectedItem.substring(index,lengthString);
+            System.out.println("type classe" + typeClass);
+            
             for (int i = 0; i < lengthCombo1; i++) {
 
                 String itemCombo1 = boxMetrics1.getItemAt(i);
                 int indexCombo2 = itemCombo1.indexOf(typeClass);
-               // System.out.println("componente " + boxMetrics1.getItemAt(i)); 
-                //System.out.println("indexCombo2 " + indexCombo2); 
+                System.out.println("componente " + boxMetrics1.getItemAt(i)); 
+                System.out.println("indexCombo2 " + indexCombo2); 
 
                 if(indexCombo2 > -1 ){
-                   // System.out.println("alouu ");
+                    System.out.println("alouu ");
                     boxMetrics2.addItem(itemCombo1);
                 }
 
             }
             
-            boxMetrics1.setSelectedItem(selectedItem);
+          //  boxMetrics1.setSelectedItem(selectedItem);
+            
+            
 
             //System.out.println("qntd " + lengthCombo1);
         }
