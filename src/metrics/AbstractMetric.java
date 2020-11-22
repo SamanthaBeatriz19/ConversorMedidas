@@ -10,11 +10,12 @@ public class AbstractMetric {
 		SPEED("speed","m/s"),
 		MASS("mass","kilograms(Kg)");
 		
+		
 	
 	//this is an example that should be followed for any other metric in the package
-	
 		private String type;
 		private String unit;
+		
 		
 		public String getType() {
 			return type;

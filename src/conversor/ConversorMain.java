@@ -1,5 +1,8 @@
 package conversor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import conversorInterface.Home;
 
 public class ConversorMain {
@@ -10,6 +13,14 @@ public class ConversorMain {
 		
 		Home open = new Home();
 		open.setVisible(true);
+		
+		List<?> listClasses = new ArrayList();
+		
+		listClasses = FindClasses.ClassNames();
+		
+		for(int a=0;a<listClasses.size();a++) {
+			System.out.println("-  "+listClasses.get(a));
+		}
 		
 		
 	}
