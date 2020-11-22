@@ -1,0 +1,6 @@
+this aplication has the funcioality of converting values, to use it properly make sure to keep in mind:
+
+ - The upper textbox may contain the value you want to convert.
+ - The lower textbox isnt made for writing, it will contain the result of your convertion
+ - The upper Combo box has all the convertion options
+ - The lower is what you will convet the value to
