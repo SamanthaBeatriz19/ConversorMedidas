@@ -49,8 +49,7 @@ public class Centimeters extends AbstractMetric implements IMetrics {
     public void setUnit(String unit) {
         this.unit = unit;
     }
-	
-        
+	  
 	
 	public float ToMeter(int value) {
 		return value/100;
