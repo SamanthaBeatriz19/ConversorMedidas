@@ -34,4 +34,8 @@ public class Meters extends AbstractMetric{
 	public float ToMilimeter(float value) {
 		return value*1000;
 	}
+	
+	public float ToDecimeter(float value) {
+		return value*10;
+	}
 }
