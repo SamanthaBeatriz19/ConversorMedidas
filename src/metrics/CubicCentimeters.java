@@ -19,7 +19,7 @@ public class CubicCentimeters extends AbstractMetric implements IMetrics{
     public CubicCentimeters() {
 		this.type = metric.getType();
         this.unit = metric.getUnit();
-        this.name = "Cubic centimeter(cm3)";
+        this.name = "CubicCentimeters(cm3)";
 	}
     
     public float ToCubicMeter(float value) {

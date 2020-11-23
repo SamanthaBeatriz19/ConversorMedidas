@@ -7,13 +7,14 @@ package conversorInterface;
 
 import conversor.FindClasses;
 import java.awt.event.ItemEvent;
+import static java.sql.Types.NULL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import metrics.Centimeters;
+//import metrics.Centimeters;
 import metrics.IMetrics;
-import metrics.Meters;
+//import metrics.Meters;
 
 /**
  *
@@ -123,10 +124,31 @@ public class Home extends javax.swing.JFrame {
         jToolBar1.add(btnHelp);
 
         txtValue.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValueActionPerformed(evt);
+            }
+        });
 
         jTextField1.setEditable(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         boxMetrics1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        boxMetrics1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxMetrics1ActionPerformed(evt);
+            }
+        });
+
+        boxMetrics2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxMetrics2ActionPerformed(evt);
+            }
+        });
 
         btnConvert.setText("Convert");
         btnConvert.addActionListener(new java.awt.event.ActionListener() {
@@ -215,13 +237,14 @@ public class Home extends javax.swing.JFrame {
     private void btnConvert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvert1ActionPerformed
         // TODO add your handling code here:
 
-
-      //  System.out.println("Você escolheu a opção " + e.getItem());
-
         String selectedItem = (String) boxMetrics1.getSelectedItem();
-
+        
+        //System.out.println("seletion " + selectedItem);
+        
         int index = selectedItem.indexOf("[");
         int lengthString = selectedItem.length() ;
+        
+        boxMetrics1.removeAllItems();
 
         if(index > -1 ){
 
@@ -229,17 +252,16 @@ public class Home extends javax.swing.JFrame {
 
             listClasse = FindClasses.ClassNames();
 
-            boxMetrics1.removeAllItems();
-
             for(int a=0;a<listClasse.size();a++) {
 
                 String classe = (String) listClasse.get(a);
 
                 int indexClasse = classe.indexOf("AbstractMetric");
+                int indexImetrics = classe.indexOf("IMetrics");
 
-               // System.out.println("-  "+listClasse.get(a));
+              //  System.out.println("-  "+listClasse.get(a));
 
-                if(indexClasse == -1 ){
+                if(indexClasse == -1 && indexImetrics == -1){
                    // System.out.println(" IF -  "+listClasse.get(a));
                    String[] parts = classe.split("/");
                    String part1 = parts[0];
@@ -250,10 +272,10 @@ public class Home extends javax.swing.JFrame {
 
                         Class c = Class.forName(part1 + "." +part2);
                         Object obj = c.newInstance();
-
+ 
+                        System.out.println("tipo " + obj.toString());
                         boxMetrics1.addItem(obj.toString());
 
-                       // System.out.println("tipo " + obj.toString());
 
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -264,11 +286,10 @@ public class Home extends javax.swing.JFrame {
             }
           //  System.out.println("olocoo");
 
-            
            // System.out.println(typeClass);
             boxMetrics1.setSelectedItem(selectedItem);
             
-            System.out.println("Selected item " + selectedItem);
+            //System.out.println("Selected item " + selectedItem);
             
             int lengthCombo1 = boxMetrics1.getItemCount();
             boxMetrics2.removeAllItems();    
@@ -290,54 +311,51 @@ public class Home extends javax.swing.JFrame {
             }
             
             String typeClass = selectedItem.substring(index,lengthString);
-            System.out.println("type classe" + typeClass);
+           // System.out.println("type classe" + typeClass);
             
             for (int i = 0; i < lengthCombo1; i++) {
 
                 String itemCombo1 = boxMetrics1.getItemAt(i);
                 int indexCombo2 = itemCombo1.indexOf(typeClass);
-                System.out.println("componente " + boxMetrics1.getItemAt(i)); 
-                System.out.println("indexCombo2 " + indexCombo2); 
+                //System.out.println("componente " + boxMetrics1.getItemAt(i)); 
+                //System.out.println("indexCombo2 " + indexCombo2); 
 
                 if(indexCombo2 > -1 ){
-                    System.out.println("alouu ");
+                  //  System.out.println("alouu ");
                     boxMetrics2.addItem(itemCombo1);
                 }
 
             }
             
-          //  boxMetrics1.setSelectedItem(selectedItem);
+            boxMetrics1.setSelectedItem(selectedItem);
             
             
 
             //System.out.println("qntd " + lengthCombo1);
-        }
+       }
 
     }//GEN-LAST:event_btnConvert1ActionPerformed
 
     private void btnConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertActionPerformed
+       
         // TODO add your handling code here:
-        IMetrics centimeters = new Centimeters();
-        IMetrics meters = new Meters();
+        //IMetrics centimeters = new Centimeters();
+        //IMetrics meters = new Meters();
         String from = (String) boxMetrics1.getSelectedItem();
         String to = (String) boxMetrics2.getSelectedItem();
-        
-        
-        
         String value = txtValue.getText();
-
 
         String[] parts;
         parts = from.split("\\(");
-               String part1 = parts[0];
-                    Class<?> c;
+        String part1 = parts[0];
+        Class<?> c;
         String[] parts2 = to.split("\\(");
         String part2 = parts2[0];
         
 
         try {
             
-            c = Class.forName("metrics." + part1);
+           c = Class.forName("metrics." + part1);
            Object obj = c.newInstance();
            IMetrics fromObj = (IMetrics) obj;
            Class d = Class.forName("metrics." + part2);
@@ -347,8 +365,6 @@ public class Home extends javax.swing.JFrame {
            //double db = mr.Convert(mr, (double)14.10);
            jTextField1.setText( String.valueOf(toObj.Convert(fromObj, Double.parseDouble(value))));	
 
-
-
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -356,59 +372,70 @@ public class Home extends javax.swing.JFrame {
         } catch (IllegalAccessException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-               
-               
-        
-        //String[] parts2 = to.split("\\(");
-        //String part2 = parts2[0];
-        
-         //try {
-
-
-                    
-
-                    
-                    
-                    //Class d = Class.forName("metrics." + part2);
-                    //Object obj2 = d.newInstance();
-                    
-                    //Object re = obj.getClass();
-                    
-                    
-
-                   // System.out.println("tipo " + obj.toString());
-
-
-
-                   /*
-        double teste = centimeters.Convert(1, meters);
-        double teste2 = meters.Convert(100, centimeters);
-        System.out.println(part1);
-        System.out.println(part2); 
-                   */
-        //Converter converter = new Converter();
-            //String ret = converter.MeasureConverter(txtValue.getText(),boxMetrics1,boxMetrics2);
-            //jTextField1.setText("100");
+         
     }//GEN-LAST:event_btnConvertActionPerformed
+
+    private void boxMetrics1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMetrics1ActionPerformed
+        
+       // System.out.println("evento " + evt);
+        
+       // System.out.println("testee");
+        
+           
+        boxMetrics2.removeAllItems();
+
+        String selectedItem = (String) boxMetrics1.getSelectedItem();
+        
+        if(selectedItem != null){
+           // System.out.println("eae mano " + selectedItem);
+        
+        int index = selectedItem.indexOf("[") ;
+        int lengthString = selectedItem.length() ;
+        
+        String typeClass = selectedItem.substring(index,lengthString);
+                
+           int lengthCombo1 = boxMetrics1.getItemCount();
+
+           for (int i = 0; i < lengthCombo1; i++) {
+
+               String itemCombo1 = boxMetrics1.getItemAt(i);
+               int indexCombo2 = itemCombo1.indexOf(typeClass);
+
+               if(indexCombo2 > -1 ){
+                   
+                   //System.out.println("-- " + itemCombo1);
+                   boxMetrics2.addItem(itemCombo1);
+               }
+
+           }
+
+            boxMetrics1.setSelectedItem(selectedItem);
+
+        }
+        
+        // TODO add your handling code here:*/
+        
+    }//GEN-LAST:event_boxMetrics1ActionPerformed
+
+    private void boxMetrics2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMetrics2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxMetrics2ActionPerformed
+
+    private void txtValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValueActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
     
     private void myInit() {
         
         setResizable(false);
         setLocationRelativeTo(null);
-               
-        Centimeters centimetro = new Centimeters();
-    
-        String type = centimetro.getType();
-        String name = centimetro.getName();
-        String unit = centimetro.getUnit();
-        
-       /* System.out.println("teste3 " + unit);
-        System.out.println("teste2 " + name);
-        System.out.println("teste " + type);*/
         
         txtValue.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
-        // String type = AbstractMetric.measureTypes.getType();
-        
+
         List<?> listClasses = new ArrayList();
 
         listClasses = FindClasses.ClassNames();
@@ -418,8 +445,10 @@ public class Home extends javax.swing.JFrame {
             String classe = (String) listClasses.get(a);
 
             int indexClasse = classe.indexOf("AbstractMetric");
+            
+            int indexClasse2 = classe.indexOf("IMetrics");
 
-            if(indexClasse == -1 ){
+            if(indexClasse == -1 && indexClasse2 == -1){
 
                String[] parts = classe.split("/");
                String part1 = parts[0];
@@ -433,38 +462,23 @@ public class Home extends javax.swing.JFrame {
                     
                     boxMetrics1.addItem(obj.toString());
 
-                   // System.out.println("tipo " + obj.toString());
-
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 } 
 
             }
 
         }
- /*
-        boxMetrics1.addItem(name + " [" + type + "]");
-        boxMetrics1.addItem("meter(M) [distance]");
-        boxMetrics1.addItem("Square centimeter [area]");
-        boxMetrics1.addItem("Square meter [area]");
-        boxMetrics1.addItem("Cubic centimeter [volume]");
-        boxMetrics1.addItem("Cubic meter [volume]");
-   */
+
         String firstItem = (String) boxMetrics1.getSelectedItem();
         
         int firstIndex = firstItem.indexOf("[");
         int firstLenght = firstItem.length();
-        
-    
+
         if(firstIndex > -1 ){
-            
-            
+              
             String typeClass = firstItem.substring(firstIndex,firstLenght);
-            System.out.println(typeClass);
+            //System.out.println(typeClass);
 
             int lengthCombo = boxMetrics1.getItemCount();
 
@@ -475,22 +489,23 @@ public class Home extends javax.swing.JFrame {
                // System.out.println("componente " + boxMetrics1.getItemAt(i)); 
                 //System.out.println("indexCombo2 " + indexOfCombo2); 
 
-                if(indexOfCombo2 > -1 ){
-               //     System.out.println("alouu ");
+                if(indexOfCombo2 > -1 ){             
+                    //System.out.println("alouu galera de cowboy ");
                     boxMetrics2.addItem(itemCombo);
                 }
  
+   
             }
 
          //   System.out.println("qntd " + lengthCombo);
         }
-
+/*
         boxMetrics1.addItemListener((ItemEvent e) -> {
-           
+            
             if(e.getStateChange() == ItemEvent.SELECTED){// para evitar duplicações
-                
+               
                 boxMetrics2.removeAllItems();
-
+                
               //  System.out.println("Você escolheu a opção " + e.getItem());
 
                 String selectedItem = (String) e.getItem();
@@ -505,19 +520,21 @@ public class Home extends javax.swing.JFrame {
                     listClasse = FindClasses.ClassNames();
                     
                     //boxMetrics1.removeAllItems();
-                  //  System.out.println("testee");
                     
+                  //  System.out.println("testee");
                    // System.out.println("mano que isso " + listClasse.size());
 
+                   
                     for(int a=0;a<listClasse.size();a++) {
-
+                        
                         String classe = (String) listClasse.get(a);
 
                         int indexClasse = classe.indexOf("AbstractMetric");
+                        int indexLMetrics = classe.indexOf("IMetrics");
                         
                        // System.out.println("-  "+listClasse.get(a));
 
-                        if(indexClasse == -1 ){
+                        if(indexClasse == -1 && indexLMetrics == -1 ){
                            // System.out.println(" IF -  "+listClasse.get(a));
                            String[] parts = classe.split("/");
                            String part1 = parts[0];
@@ -526,10 +543,10 @@ public class Home extends javax.swing.JFrame {
 
                             try {
 
-                                Class c = Class.forName(part1 + "." +part2);
-                                Object obj = c.newInstance();
+                                Class t = Class.forName(part1 + "." +part2);
+                                Object obj3 = t.newInstance();
                                 
-                                boxMetrics1.addItem(obj.toString());
+                                boxMetrics1.addItem(obj3.toString());
                                 
                                // System.out.println("tipo " + obj.toString());
 
@@ -540,7 +557,7 @@ public class Home extends javax.swing.JFrame {
                         }
 
                     }
-                  //  System.out.println("olocoo");
+                    
                     
                     String typeClass = selectedItem.substring(index,lengthString);
                    // System.out.println(typeClass);
@@ -555,7 +572,8 @@ public class Home extends javax.swing.JFrame {
                     //    System.out.println("indexCombo2 " + indexCombo2); 
 
                         if(indexCombo2 > -1 ){
-                     //       System.out.println("alouu ");
+                            //System.out.println("alouu galera de peao ");
+                            System.out.println("- " + itemCombo1);
                             boxMetrics2.addItem(itemCombo1);
                         }
 
@@ -566,17 +584,7 @@ public class Home extends javax.swing.JFrame {
             }
             
         });
-        
-           /*
-        boxMetrics2.addItem("centimeter");
-        boxMetrics2.addItem("meter");
-        boxMetrics2.addItem("Square centimeter");
-        boxMetrics2.addItem("Square meter");
-        boxMetrics2.addItem("Cubic centimeter");
-        boxMetrics2.addItem("Cubic meter");
-           */
-
-        
+*/
     }
     
 

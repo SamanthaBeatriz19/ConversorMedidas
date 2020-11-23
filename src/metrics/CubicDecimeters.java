@@ -19,7 +19,7 @@ public class CubicDecimeters extends AbstractMetric implements IMetrics{
     public CubicDecimeters() {
     	this.type = metric.getType();
         this.unit = metric.getUnit();
-        this.name = "Cubic Decimeters(dm3)";
+        this.name = "CubicDecimeters(dm3)";
     }
     
     public float ToCubicMeter(float value) {
