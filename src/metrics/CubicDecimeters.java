@@ -51,8 +51,8 @@ public class CubicDecimeters extends AbstractMetric implements IMetrics{
 	}
 
 	@Override
-	public double Convert(double from, IMetrics metrics) {
-		 return fromBasicUnit(metrics.toBasicUnit(from));
+	public double Convert(IMetrics metric, double value) {
+		 return fromBasicUnit(metric.toBasicUnit(value));
 	}
     
 }

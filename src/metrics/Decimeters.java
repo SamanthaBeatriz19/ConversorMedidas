@@ -50,9 +50,9 @@ public class Decimeters extends AbstractMetric implements IMetrics{
 	}
 
 	@Override
-	public double Convert(double from, IMetrics metrics) {
+	public double Convert(IMetrics metric, double value) {
 		// TODO Auto-generated method stub
-		 return fromBasicUnit(metrics.toBasicUnit(from));
+		 return fromBasicUnit(metric.toBasicUnit(value));
 	}
 
 }

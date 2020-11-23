@@ -215,7 +215,6 @@ public class Home extends javax.swing.JFrame {
     private void btnConvert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvert1ActionPerformed
         // TODO add your handling code here:
 
-        //boxMetrics2.removeAllItems();
 
       //  System.out.println("Você escolheu a opção " + e.getItem());
 
@@ -320,15 +319,73 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         IMetrics centimeters = new Centimeters();
         IMetrics meters = new Meters();
+        String from = (String) boxMetrics1.getSelectedItem();
+        String to = (String) boxMetrics2.getSelectedItem();
         
+        
+        
+        String value = txtValue.getText();
+
+
+        String[] parts;
+        parts = from.split("\\(");
+               String part1 = parts[0];
+                    Class<?> c;
+        String[] parts2 = to.split("\\(");
+        String part2 = parts2[0];
+        
+
+        try {
+            
+            c = Class.forName("metrics." + part1);
+           Object obj = c.newInstance();
+           IMetrics fromObj = (IMetrics) obj;
+           Class d = Class.forName("metrics." + part2);
+           Object obj2 = d.newInstance();
+           IMetrics toObj = (IMetrics) obj2;
+
+           //double db = mr.Convert(mr, (double)14.10);
+           jTextField1.setText( String.valueOf(toObj.Convert(fromObj, Double.parseDouble(value))));	
+
+
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
+               
+        
+        //String[] parts2 = to.split("\\(");
+        //String part2 = parts2[0];
+        
+         //try {
+
+
+                    
+
+                    
+                    
+                    //Class d = Class.forName("metrics." + part2);
+                    //Object obj2 = d.newInstance();
+                    
+                    //Object re = obj.getClass();
+                    
+                    
+
+                   // System.out.println("tipo " + obj.toString());
+
+
+
+                   /*
         double teste = centimeters.Convert(1, meters);
         double teste2 = meters.Convert(100, centimeters);
-
-        System.out.println(teste);
-        System.out.println(teste2);
-
-        
-        
+        System.out.println(part1);
+        System.out.println(part2); 
+                   */
         //Converter converter = new Converter();
             //String ret = converter.MeasureConverter(txtValue.getText(),boxMetrics1,boxMetrics2);
             //jTextField1.setText("100");
@@ -472,7 +529,7 @@ public class Home extends javax.swing.JFrame {
                                 Class c = Class.forName(part1 + "." +part2);
                                 Object obj = c.newInstance();
                                 
-                               // boxMetrics1.addItem(obj.toString());
+                                boxMetrics1.addItem(obj.toString());
                                 
                                // System.out.println("tipo " + obj.toString());
 

@@ -53,10 +53,7 @@ public class Meters extends AbstractMetric implements IMetrics{
     }
 
     @Override
-    public double Convert(double from, IMetrics metrics) {
-         return fromBasicUnit(metrics.toBasicUnit(from));//To change body of generated methods, choose Tools | Templates.
+    public double Convert(IMetrics metric, double value) {
+         return fromBasicUnit(metric.toBasicUnit(value));//To change body of generated methods, choose Tools | Templates.
     }
-	
-	
-
 }

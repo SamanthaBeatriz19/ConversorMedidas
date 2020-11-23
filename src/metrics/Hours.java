@@ -13,12 +13,12 @@ public class Hours extends AbstractMetric implements IMetrics{
     public Hours() {
         this.type = metric.getType();
         this.unit = metric.getUnit();
-        this.name = "Hours (h)";
+        this.name = "Hours(h)";
     }
 
     @Override
     public String toString() {
-        return name + " " + "[" + type + "]";
+        return name +" "+ "[" + type + "]";
     }
     
     public float ToSecond(float value) {
@@ -41,9 +41,9 @@ public class Hours extends AbstractMetric implements IMetrics{
 	}
 
 	@Override
-	public double Convert(double from, IMetrics metrics) {
+	public double Convert(IMetrics metric, double value) {
 		// TODO Auto-generated method stub
-		return fromBasicUnit(metrics.toBasicUnit(from));
+		return fromBasicUnit(metric.toBasicUnit(value));
 	}
 
 }

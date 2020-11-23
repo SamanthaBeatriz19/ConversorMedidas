@@ -5,8 +5,6 @@
  */
 package metrics;
 
-import javax.swing.JComboBox;
-
 /**
  *
  * @author juan-
@@ -15,7 +13,7 @@ public interface IMetrics {
     
     public double toBasicUnit(double value);
     public double fromBasicUnit(double value);
-    public double Convert(double from, IMetrics metric);
+    public double Convert(IMetrics metric, double value);
    
 }
 
