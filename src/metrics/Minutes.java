@@ -5,7 +5,6 @@ public class Minutes extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.TIME;
 	
-	@SuppressWarnings("unused")
 	private String type ;
 	@SuppressWarnings("unused")
 	private String unit;

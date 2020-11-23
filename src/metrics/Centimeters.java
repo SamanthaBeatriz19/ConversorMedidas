@@ -22,34 +22,7 @@ public class Centimeters extends AbstractMetric implements IMetrics {
     @Override
     public String toString() {
         return name + " " + "[" + type + "]";
-    }
-    
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-        
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-	  
+    }	  
 	
 	public float ToMeter(int value) {
 		return value/100;
@@ -71,12 +44,12 @@ public class Centimeters extends AbstractMetric implements IMetrics {
 
     @Override
     public double toBasicUnit(double value) {
-        return value/100; //DE CENTIMETRO PARA METRO
+        return value/100;
     }
 
     @Override
     public double fromBasicUnit(double value) {
-        return value*100; //DE METRO PARA CENTIMENTO
+        return value*100; 
     }
 
     @Override

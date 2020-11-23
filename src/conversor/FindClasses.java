@@ -17,8 +17,6 @@ import java.util.Set;
 public class FindClasses {
 	
 		public static ArrayList<String> result = new ArrayList<String>();
-		
-		
 
 		public static void scan(ClassLoader classLoader, Set<String> locations,
 				Set<String> packages) {
@@ -41,18 +39,16 @@ public class FindClasses {
 
 				if (matchesAny(path, locations)) {
 					if (location.isDirectory()) {
-						getClassesInDirectory(null, location, packages);
+						getClassesByDirectory(null, location, packages);
 					} 
 				}
 			}
 		}
 
-		public static ArrayList<String> getClassesInDirectory(String parent, File location,
+		public static ArrayList<String> getClassesByDirectory(String parent, File location,
 				Set<String> packagePatterns) {
 			File[] files = location.listFiles();
 			StringBuilder builder = null;
-			
-			//ArrayList<String> result = new ArrayList<String>();
 
 			for (File file : files) {
 				builder = new StringBuilder(100);
@@ -61,11 +57,10 @@ public class FindClasses {
 						.toString());
 
 				if (file.isDirectory()) {
-					getClassesInDirectory(Address, file, packagePatterns);
+					getClassesByDirectory(Address, file, packagePatterns);
 				} else if (file.getName().endsWith(".class")) {
 					if (matchesAny(Address, packagePatterns)) {
 						if(Address.contains("metrics")) {
-							//System.out.println(packageOrClass);
 							result.add(Address);
 							
 						}

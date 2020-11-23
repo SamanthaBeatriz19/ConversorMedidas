@@ -22,22 +22,6 @@ public class Milimeters extends AbstractMetric implements IMetrics{
      public String toString() {
          return name + " " + "[" + type + "]";
      }
-	 
-	 public float ToCentimeter(float value) {
-			return value/10;
-		}
-	 
-	 public float ToMeter(float value) {
-			return value/1000;
-		}
-	 
-	 public float ToDecimeter(float value) {
-			return value/100;
-		}
-	 public float ToKilometer(float value) {
-			return (float) (value/ Math.pow(10,6));
-		}
-	 
 
 	@Override
 	public double toBasicUnit(double value) {

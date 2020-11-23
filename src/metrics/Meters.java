@@ -5,8 +5,7 @@ package metrics;
 public class Meters extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.DISTANCE;
-	
-	@SuppressWarnings("unused")
+
 	private String type ;
 	@SuppressWarnings("unused")
 	private String unit;
@@ -24,24 +23,6 @@ public class Meters extends AbstractMetric implements IMetrics{
         }
 	
         
-        
-	public float ToCentimeter(float value) {
-		return value*100;
-	}
-	
-	public float Tokilometer(float value) {
-		return value/1000;
-	}
-	
-	public float ToMilimeter(float value) {
-		return value*1000;
-	}
-	
-	public float ToDecimeter(float value) {
-		return value*10;
-	}
-
-
     @Override
     public double toBasicUnit(double value) {
         return value; //To change body of generated methods, choose Tools | Templates.

@@ -3,7 +3,7 @@ package metrics;
 public class SquareMeters extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.AREA;
-	@SuppressWarnings("unused")
+	
 	private String type ;
 	@SuppressWarnings("unused")
 	private String unit;
@@ -12,7 +12,7 @@ public class SquareMeters extends AbstractMetric implements IMetrics{
         public SquareMeters() {
             this.unit = metric.getUnit();
             this.type = metric.getType();
-            this.name = "SquareMeters(MÂ²)";
+            this.name = "SquareMeters(M²)";
         }
         
         @Override
@@ -23,12 +23,12 @@ public class SquareMeters extends AbstractMetric implements IMetrics{
 	
 	  @Override
 	    public double toBasicUnit(double value) {
-	        return value; //DE CENTIMETRO PARA METRO
+	        return value;
 	    }
 
 	    @Override
 	    public double fromBasicUnit(double value) {
-	        return value; //DE METRO PARA CENTIMENTO
+	        return value;
 	    }
 
 	    @Override

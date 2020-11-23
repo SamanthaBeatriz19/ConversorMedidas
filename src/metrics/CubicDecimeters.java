@@ -22,22 +22,6 @@ public class CubicDecimeters extends AbstractMetric implements IMetrics{
         this.name = "CubicDecimeters(dm3)";
     }
     
-    public float ToCubicMeter(float value) {
-		return value/1000;
-	}
-    
-    public float ToCubicCentimeter(float value) {
-		return value*1000;
-	}
-    
-    public float ToMililiter(float value) {
-		return value*1000;
-	}
-    
-    public float ToLiter(float value) {
-		return value;
-	}
-
 	@Override
 	public double toBasicUnit(double value) {
 		// TODO Auto-generated method stub

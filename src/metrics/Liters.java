@@ -21,30 +21,14 @@ measureTypes metric = measureTypes.VOLUME;
         this.name = "Liters (L)";
     }
     
-    public float ToCubicDecimeter(float value) {
-		return value;
-	}
-    
-    public float ToCubicMeter(float value) {
-		return value/1000;
-	}
-    
-    public float ToMililiter(float value) {
-		return value/1000;
-	}
-    
-    public float ToCentimeter(float value) {
-		return value*1000;
-	}
-    
     @Override
     public double toBasicUnit(double value) {
-        return value; //DE CENTIMETRO PARA METRO
+        return value; 
     }
 
     @Override
     public double fromBasicUnit(double value) {
-        return value; //DE METRO PARA CENTIMENTO
+        return value; 
     }
 
     @Override

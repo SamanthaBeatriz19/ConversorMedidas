@@ -22,21 +22,6 @@ public class CubicCentimeters extends AbstractMetric implements IMetrics{
         this.name = "CubicCentimeters(cm3)";
 	}
     
-    public float ToCubicMeter(float value) {
-		return value/(float)Math.pow(10, 6);
-	}
-    
-    public float ToCubicDecimeter(float value) {
-		return value*(float)Math.pow(10, 3);
-	}
-    
-    public float ToLiter(float value) {
-		return value/(float)Math.pow(10, 3);
-	}
-    
-    public float ToMililiter(float value) {
-		return value;
-	}
 
 	@Override
 	public double toBasicUnit(double value) {
