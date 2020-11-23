@@ -1,5 +1,10 @@
 package metrics;
 
+/**Metric Class Minutes
+* @author Samantha
+* @version 1.00
+* @since 23/11/2020
+*/
 
 public class Minutes extends AbstractMetric implements IMetrics{
 	

@@ -7,6 +7,11 @@ package conversorInterface;
 
 import conversor.FileReader;
 
+/**Class with the Help Interface
+* @author Guilherme Cesilla 
+* @version 1.00
+* @since 23/11/2020
+*/
 
 public class Help extends javax.swing.JFrame {
 

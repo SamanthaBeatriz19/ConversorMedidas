@@ -1,5 +1,11 @@
 package metrics;
 
+/**Class Parent class of Metrics 
+* @author Samantha Beatriz
+* @version 1.00
+* @since 23/11/2020
+*/
+
 public class AbstractMetric {
 	public enum measureTypes
 	{

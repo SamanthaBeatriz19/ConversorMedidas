@@ -1,5 +1,11 @@
 package metrics;
 
+/**Metric Class Kilometers
+* @author Samantha
+* @version 1.00
+* @since 23/11/2020
+*/
+
 public class Kilometers extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.DISTANCE;

@@ -1,5 +1,11 @@
 package metrics;
 
+/**Metric Class Hours
+* @author Samantha
+* @version 1.00
+* @since 23/11/2020
+*/
+
 public class Hours extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.TIME;

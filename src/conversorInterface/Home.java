@@ -9,6 +9,12 @@ import java.util.logging.Logger;
 import conversor.FindClasses;
 import metrics.IMetrics;
 
+/**Class with the Home Interface
+* @author Guilherme Cesilla, Alexandre Paschoal and Juan Santos
+* @version 1.00
+* @since 23/11/2020
+*/
+
 @SuppressWarnings("serial")
 public class Home extends javax.swing.JFrame {
 
@@ -208,14 +214,14 @@ public class Home extends javax.swing.JFrame {
         pack();
     }
     
-    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {                                        
        
      new Help().setVisible(true);
      dispose();
      
     }
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {                                           
        
 
         String selectedItem = (String) boxMetrics1.getSelectedItem();

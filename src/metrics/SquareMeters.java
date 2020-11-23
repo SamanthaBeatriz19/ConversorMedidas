@@ -1,5 +1,11 @@
 package metrics;
 
+/**Metric Class SquareMeters
+* @author Samantha
+* @version 1.00
+* @since 23/11/2020
+*/
+
 public class SquareMeters extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.AREA;
@@ -12,7 +18,7 @@ public class SquareMeters extends AbstractMetric implements IMetrics{
         public SquareMeters() {
             this.unit = metric.getUnit();
             this.type = metric.getType();
-            this.name = "SquareMeters(M²)";
+            this.name = "SquareMeters(MÂ²)";
         }
         
         @Override

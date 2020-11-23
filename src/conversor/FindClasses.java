@@ -12,7 +12,11 @@ import java.util.List;
 import java.util.Set;
 
 
-
+/**Class that find Classes
+* @author Samantha Beatriz
+* @version 1.00
+* @since 23/11/2020
+*/
 
 public class FindClasses {
 	

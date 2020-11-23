@@ -4,3 +4,11 @@ this aplication has the funcioality of converting values, to use it properly mak
  - The lower textbox isnt made for writing, it will contain the result of your convertion
  - The upper Combo box has all the convertion options
  - The lower is what you will convet the value to
+ 
+ ------------- copyrigths -------------
+ 
+ Based on Software Law No. 9,609 / 98, this is a Software Use Liability Agreement between the 
+end user of the software and "Grupo A-4", author and copyright owner of the software 
+"ConversorMedidas", hereinafter referred to simply as Author.
+
+"Grupo A-4" - Alexandre Paschoal; Juan Santos; Guilherme Cesilla; Samantha Paschoalini

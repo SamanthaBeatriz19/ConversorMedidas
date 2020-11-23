@@ -5,6 +5,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**Class that read files
+* @author Samantha Beatriz
+* @version 1.00
+* @since 23/11/2020
+*/
+
+
 public class FileReader {
 	
 	

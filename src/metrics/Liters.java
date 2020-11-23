@@ -1,6 +1,10 @@
 package metrics;
 
-
+/**Metric Class Liters
+* @author Samantha
+* @version 1.00
+* @since 23/11/2020
+*/
 public class Liters extends AbstractMetric implements IMetrics{
 	
 measureTypes metric = measureTypes.VOLUME;

@@ -1,6 +1,10 @@
 package metrics;
 
-
+/**Metric Class Meters
+* @author Samantha
+* @version 1.00
+* @since 23/11/2020
+*/
 
 public class Meters extends AbstractMetric implements IMetrics{
 	
