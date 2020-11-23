@@ -2,7 +2,7 @@ package metrics;
 
 
 
-public class CubicDecimeters extends AbstractMetric{
+public class CubicDecimeters extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.VOLUME;
 	
@@ -36,6 +36,23 @@ public class CubicDecimeters extends AbstractMetric{
     
     public float ToLiter(float value) {
 		return value;
+	}
+
+	@Override
+	public double toBasicUnit(double value) {
+		// TODO Auto-generated method stub
+		return value;
+	}
+
+	@Override
+	public double fromBasicUnit(double value) {
+		// TODO Auto-generated method stub
+		return value;
+	}
+
+	@Override
+	public double Convert(double from, IMetrics metrics) {
+		 return fromBasicUnit(metrics.toBasicUnit(from));
 	}
     
 }

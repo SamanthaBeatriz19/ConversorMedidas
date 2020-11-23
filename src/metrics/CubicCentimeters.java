@@ -2,7 +2,7 @@ package metrics;
 
 import java.lang.Math ;
 
-public class CubicCentimeters extends AbstractMetric{
+public class CubicCentimeters extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.VOLUME;
 	
@@ -36,6 +36,23 @@ public class CubicCentimeters extends AbstractMetric{
     
     public float ToMililiter(float value) {
 		return value;
+	}
+
+	@Override
+	public double toBasicUnit(double value) {
+		// TODO Auto-generated method stub
+		return value/1000;
+	}
+
+	@Override
+	public double fromBasicUnit(double value) {
+		// TODO Auto-generated method stub
+		return value*1000;
+	}
+
+	@Override
+	public double Convert(double from, IMetrics metrics) {
+		 return fromBasicUnit(metrics.toBasicUnit(from));
 	}
 
 }

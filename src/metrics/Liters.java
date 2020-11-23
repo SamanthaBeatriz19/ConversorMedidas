@@ -1,7 +1,7 @@
 package metrics;
 
 
-public class Liters extends AbstractMetric{
+public class Liters extends AbstractMetric implements IMetrics{
 	
 measureTypes metric = measureTypes.VOLUME;
 	
@@ -37,6 +37,19 @@ measureTypes metric = measureTypes.VOLUME;
 		return value*1000;
 	}
     
-    
+    @Override
+    public double toBasicUnit(double value) {
+        return value; //DE CENTIMETRO PARA METRO
+    }
+
+    @Override
+    public double fromBasicUnit(double value) {
+        return value; //DE METRO PARA CENTIMENTO
+    }
+
+    @Override
+    public double Convert(double from, IMetrics metrics) {
+        return fromBasicUnit(metrics.toBasicUnit(from));
+    }
 
 }

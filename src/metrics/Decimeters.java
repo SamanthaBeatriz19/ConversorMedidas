@@ -1,6 +1,6 @@
 package metrics;
 
-public class Decimeters extends AbstractMetric{
+public class Decimeters extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.DISTANCE;
 	
@@ -36,5 +36,23 @@ public class Decimeters extends AbstractMetric{
 	 public float ToKiloeter(float value) {
 			return value/10000;
 		}
+
+	@Override
+	public double toBasicUnit(double value) {
+		// TODO Auto-generated method stub
+		return value/10;
+	}
+
+	@Override
+	public double fromBasicUnit(double value) {
+		// TODO Auto-generated method stub
+		return value*10;
+	}
+
+	@Override
+	public double Convert(double from, IMetrics metrics) {
+		// TODO Auto-generated method stub
+		 return fromBasicUnit(metrics.toBasicUnit(from));
+	}
 
 }

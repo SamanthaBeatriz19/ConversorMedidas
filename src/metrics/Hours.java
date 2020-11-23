@@ -1,6 +1,6 @@
 package metrics;
 
-public class Hours extends AbstractMetric{
+public class Hours extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.TIME;
 	
@@ -28,5 +28,22 @@ public class Hours extends AbstractMetric{
     public float ToMinute(float value) {
     	return value*60;
     }
+
+	@Override
+	public double toBasicUnit(double value) {
+		return value*3600;
+	}
+
+	@Override
+	public double fromBasicUnit(double value) {
+		// TODO Auto-generated method stub
+		return value/3600;
+	}
+
+	@Override
+	public double Convert(double from, IMetrics metrics) {
+		// TODO Auto-generated method stub
+		return fromBasicUnit(metrics.toBasicUnit(from));
+	}
 
 }

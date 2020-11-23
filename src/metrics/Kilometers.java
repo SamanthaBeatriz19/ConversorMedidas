@@ -2,7 +2,7 @@ package metrics;
 
 
 
-public class Kilometers extends AbstractMetric{
+public class Kilometers extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.DISTANCE;
 	
@@ -38,5 +38,20 @@ public class Kilometers extends AbstractMetric{
     public float ToMilimeter(float value) {
 		return (float) (value* Math.pow(10,6));
 	}
+    
+    @Override
+    public double toBasicUnit(double value) {
+        return value*1000; 
+    }
+
+    @Override
+    public double fromBasicUnit(double value) {
+        return value/1000; 
+    }
+
+    @Override
+    public double Convert(double from, IMetrics metrics) {
+        return fromBasicUnit(metrics.toBasicUnit(from));
+    }
 
 }

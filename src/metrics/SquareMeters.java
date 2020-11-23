@@ -1,6 +1,6 @@
 package metrics;
 
-public class SquareMeters extends AbstractMetric{
+public class SquareMeters extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.AREA;
 	@SuppressWarnings("unused")
@@ -20,10 +20,19 @@ public class SquareMeters extends AbstractMetric{
             return name + " " + "[" + type + "]";
         }
 	
-	public float ToSquareCentimeter(float value) {
-		return value*10000;
-	}
-	public float ToSoccerCamp(float value){
-		return value/10800;
-	}
+	
+	  @Override
+	    public double toBasicUnit(double value) {
+	        return value; //DE CENTIMETRO PARA METRO
+	    }
+
+	    @Override
+	    public double fromBasicUnit(double value) {
+	        return value; //DE METRO PARA CENTIMENTO
+	    }
+
+	    @Override
+	    public double Convert(double from, IMetrics metrics) {
+	        return fromBasicUnit(metrics.toBasicUnit(from));
+	    }
 }

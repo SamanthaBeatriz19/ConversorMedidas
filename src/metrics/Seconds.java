@@ -1,6 +1,6 @@
 package metrics;
 
-public class Seconds extends AbstractMetric{
+public class Seconds extends AbstractMetric implements IMetrics{
 	
 	measureTypes metric = measureTypes.TIME;
 	
@@ -21,13 +21,19 @@ public class Seconds extends AbstractMetric{
         return name + " " + "[" + type + "]";
     }
     
-    public float ToHour(float value) {
-    	return value/3600;
-    }
     
-    public float ToMinute(float value) {
-    	return value/60;
+    @Override
+    public double toBasicUnit(double value) {
+        return value; //DE CENTIMETRO PARA METRO
     }
-    
 
+    @Override
+    public double fromBasicUnit(double value) {
+        return value; //DE METRO PARA CENTIMENTO
+    }
+
+    @Override
+    public double Convert(double from, IMetrics metrics) {
+        return fromBasicUnit(metrics.toBasicUnit(from));
+    }
 }
